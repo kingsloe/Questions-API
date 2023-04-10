@@ -16,9 +16,11 @@ def questions_list(request):
         topic_name = request.GET.get('topic')
         subject_name = request.GET.get('subject')
         grade_name = request.GET.get('grade')
+        limit = request.GET.get('limit')
         questions = questions.filter(topic__name=topic_name) if topic_name else questions
         questions = questions.filter(grade__name=grade_name) if grade_name else questions
         questions = questions.filter(subject__name=subject_name) if subject_name else questions
+        questions = questions[:int(limit)] if limit else questions
 
     except:
         return HttpResponseNotFound(f'<h1> Page not found</h1>')
