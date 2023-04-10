@@ -23,6 +23,7 @@ class Topic(models.Model):
     
 class Question(models.Model):
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
+    subject = models.ManyToManyField(Subject)   
     question_text = models.TextField() 
     diagram_image = models.ImageField(upload_to='diagrams/', null=True, blank=True) 
     highlight = models.CharField(max_length=200, null=True, blank=True)
